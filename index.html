@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Git Commands Cheat Sheet - Complete Light</title>
+    <style>
+      :root {
+        /* LIGHT THEME PALETTE (User Preferred) */
+        --bg-color: #f4f6f8; /* Very subtle cool grey */
+        --card-bg: #ffffff; /* Pure white */
+        --text-main: #334155; /* Slate dark */
+        --text-desc: #64748b; /* Slate grey for descriptions */
+        --accent: #2563eb; /* Bright Blue */
+
+        /* Code Styling */
+        --cmd-bg: #eff6ff; /* Super pale blue */
+        --cmd-text: #1e40af; /* Dark blue for contrast */
+        --cmd-border: #bfdbfe;
+
+        --border: #e2e8f0; /* Light grey border */
+        --font-main: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        --font-mono: "JetBrains Mono", "Fira Code", "Courier New", monospace;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-color: var(--bg-color);
+        color: var(--text-main);
+        font-family: var(--font-main);
+        padding: 2.5rem;
+        line-height: 1.5;
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 3.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 3px solid var(--border);
+      }
+
+      h1 {
+        font-size: 3rem;
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 0.5rem;
+        font-weight: 800;
+      }
+
+      p.subtitle {
+        color: var(--text-desc);
+        font-size: 1.2rem;
+        font-weight: 500;
+      }
+
+      /* Grid Layout */
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 2rem;
+      }
+
+      .card {
+        background-color: var(--card-bg);
+        border-radius: 12px;
+        padding: 1.8rem;
+        border: 1px solid var(--border);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.04);
+        transition: all 0.2s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.08);
+        border-color: var(--accent);
+      }
+
+      .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.2rem;
+        border-bottom: 2px solid var(--border);
+        padding-bottom: 0.8rem;
+      }
+
+      .cmd-title {
+        font-family: var(--font-mono);
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--accent);
+      }
+
+      .cmd-group {
+        margin-bottom: 1.2rem;
+      }
+
+      .cmd-group:last-child {
+        margin-bottom: 0;
+      }
+
+      code {
+        display: block;
+        background-color: var(--cmd-bg);
+        color: var(--cmd-text);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-family: var(--font-mono);
+        font-size: 0.95rem;
+        margin-bottom: 6px;
+        border-left: 4px solid var(--accent);
+        word-wrap: break-word;
+        font-weight: 600;
+      }
+
+      .desc {
+        font-size: 0.95rem;
+        color: var(--text-desc);
+        margin-left: 2px;
+      }
+
+      .note {
+        font-size: 0.85rem;
+        color: #d97706; /* Amber for notes */
+        font-style: italic;
+        margin-top: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Git Commands Cheat Sheet</h1>
+      <p class="subtitle">Complete Reference Guide</p>
+    </header>
+
+    <div class="grid">
+      <div class="card">
+        <div class="card-header"><span class="cmd-title">git add</span></div>
+        <div class="cmd-group">
+          <code>git add &lt;file&gt;</code>
+          <div class="desc">Add a specific file to the staging area.</div>
+        </div>
+        <div class="cmd-group">
+          <code>git add .</code>
+          <div class="desc">
+            Stage all changes in current directory (new & modified).
+          </div>
+        </div>
+        <div class="cmd-group">
+          <code>git add -A</code>
+          <div class="desc">Stage all changes (new, modified, & deleted).</div>
+        </div>
+        <div class="cmd-group">
+          <code>git add --all</code>
+          <div class="desc">Longer synonym for <code>git add -A</code>.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><span class="cmd-title">git branch</span></div>
+        <div class="cmd-group">
+          <code>git branch</code>
+          <div class="desc">List all local branches.</div>
+        </div>
+        <div class="cmd-group">
+          <code>git branch &lt;name&gt;</code>
+          <div class="desc">Create a new branch.</div>
+        </div>
+        <div class="cmd-group">
+          <code>git branch -m &lt;new&gt;</code>
+          <div class="desc">Rename current branch.</div>
+        </div>
+        <div class="cmd-group">
+          <code>git branch -d &lt;name&gt;</code>
+          <div class="desc">Delete a branch (safe).</div>
+        </div>
+        <div class="cmd-group">
+          <code>git branch -D &lt;name&gt;</code>
+          <div class="desc">Force delete a branch.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="cmd-title">git checkout</span>
+        </div>
+        <div class="cmd-group">
+          <code>git checkout &lt;branch&gt;</code>
+          <div class="desc">
+            Switch to an existing branch (like git switch).
+          </div>
+        </div>
+        <div class="cmd-group">
+          <code>git checkout -b &lt;branch&gt;</code>
+          <div class="desc">Create and checkout a new branch.</div>
+        </div>
+        <div class="cmd-group">
+          <code>git checkout origin/main &lt;file&gt;</code>
+          <div class="desc">
+            Reset a specific file to match the main branch.
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><span class="cmd-title">git clone</span></div>
+        <div class="cmd-group">
+          <code>git clone &lt;url&gt;</code>
+          <div class="desc">Clone a repository to local machine.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><span class="cmd-title">git commit</span></div>
+        <div class="cmd-group">
+          <code>git commit -m "msg"</code>
+          <div class="desc">Commit staged changes with a message.</div>
+        </div>
+        <div class="cmd-group">
+          <code>git commit -am "msg"</code>
+          <div class="desc">Stage and commit tracked files in one step.</div>
+        </div>
+        <div class="cmd-group">
+          <code>git commit --amend</code>
+          <div class="desc">Edit the last commit message or content.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><span class="cmd-title">git config</span></div>
+        <div class="cmd-group">
+          <code>git config --global user.name "..."</code>
+          <div class="desc">Set your username.</div>
+        </div>
+        <div class="cmd-group">
+          <code>git config --global user.email "..."</code>
+          <div class="desc">Set your email.</div>
+        </div>
+        <div class="cmd-group">
+          <code>git config --global init.defaultBranch main</code>
+          <div class="desc">Set default branch to 'main'.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><span class="cmd-title">git diff</span></div>
+        <div class="cmd-group">
+          <code>git diff</code>
+          <div class="desc">Check unstaged changes.</div>
+        </div>
+        <div class="cmd-group">
+          <code>git diff &lt;branch_B&gt; &lt;branch_A&gt;</code>
+          <div class="desc">
+            Show the diff of what is in branch_A that is not in branch_B.
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><span class="cmd-title">git fetch</span></div>
+        <div class="cmd-group">
+          <code>git fetch</code>
+          <div class="desc">Download remote changes without merging.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><span class="cmd-title">git help</span></div>
+        <div class="cmd-group">
+          <code>git help &lt;command&gt;</code>
+          <div class="desc">Get help on a specific command.</div>
+        </div>
+        <div class="cmd-group">
+          <code>git &lt;command&gt; -h</code>
+          <div class="desc">Alternate syntax for help.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><span class="cmd-title">git init</span></div>
+        <div class="cmd-group">
+          <code>git init</code>
+          <div class="desc">Initialize a new git repository locally.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><span class="cmd-title">git log</span></div>
+        <div class="cmd-group">
+          <code>git log</code>
+          <div class="desc">List commit history.</div>
+        </div>
+        <div class="cmd-group">
+          <code>git log &lt;branch_B&gt; &lt;branch_A&gt;</code>
+          <div class="desc">
+            Show the commits on branch_A that are not on branch_B.
+          </div>
+        </div>
+        <div class="cmd-group">
+          <code>git log --oneline</code>
+          <div class="desc">
+            List commit history (each commit on a single line).
+          </div>
+        </div>
+        <div class="cmd-group">
+          <code>git log --stat -M</code>
+          <div class="desc">
+            Show all commit logs with indication of any paths that moved.
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><span class="cmd-title">git merge</span></div>
+        <div class="cmd-group">
+          <code>git merge &lt;branch&gt;</code>
+          <div class="desc">Merge specified branch into current branch.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><span class="cmd-title">git mv</span></div>
+        <div class="cmd-group">
+          <code>git mv &lt;old&gt; &lt;new&gt;</code>
+          <div class="desc">Rename a file.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><span class="cmd-title">git pull</span></div>
+        <div class="cmd-group">
+          <code>git pull &lt;remote&gt;</code>
+          <div class="desc">Download content from remote.</div>
+          <div class="note">(fetch + merge)</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><span class="cmd-title">git push</span></div>
+        <div class="cmd-group">
+          <code>git push &lt;remote&gt; &lt;branch&gt;</code>
+          <div class="desc">Push committed changes to remote.</div>
+        </div>
+        <div class="cmd-group">
+          <code>git push -u origin &lt;branch&gt;</code>
+          <div class="desc">Push and link branch to remote (upstream).</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><span class="cmd-title">git rebase</span></div>
+        <div class="cmd-group">
+          <code>git rebase &lt;branch&gt;</code>
+          <div class="desc">
+            Reapply current commits on top of another branch.
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><span class="cmd-title">git remote</span></div>
+        <div class="cmd-group">
+          <code>git remote add origin &lt;name&gt; &lt;repository url&gt;</code>
+          <div class="desc">
+            Create a connection to a remote repository. Set origin of local
+            folder as the remote repository (linking them together).
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><span class="cmd-title">git reset</span></div>
+        <div class="cmd-group">
+          <code>git reset &lt;file&gt;</code>
+          <div class="desc">
+            Unstage a file while retaining the changes in working directory.
+          </div>
+        </div>
+        <div class="cmd-group">
+          <code>git reset HEAD~1 &lt;file&gt;</code>
+          <div class="desc">
+            Undo your last commit, but keep all changes in your working
+            directory.
+          </div>
+        </div>
+        <div class="cmd-group">
+          <code>git reset-- hard &lt;commit_id&gt;</code>
+          <div class="desc">
+            Undo changes/commits made after the specified commit ID, ie revert
+            the changes you made in the latest commit(s).
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><span class="cmd-title">git rm</span></div>
+        <div class="cmd-group">
+          <code>git rm &lt;file&gt;</code>
+          <div class="desc">
+            Delete a file from disk and stop tracking it in Git.
+          </div>
+        </div>
+        <div class="cmd-group">
+          <code>git rm --cached &lt;file&gt;</code>
+          <div class="desc">Stop tracking a file, but keep it on disk.</div>
+        </div>
+        <div class="cmd-group">
+          <code>git rm -r &lt;folder&gt;</code>
+          <div class="desc">
+            Recursively delete a folder and remove it from tracking.
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><span class="cmd-title">git status</span></div>
+        <div class="cmd-group">
+          <code>git status </code>
+          <div class="desc">Checks the Status of your branch.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><span class="cmd-title">git switch</span></div>
+        <div class="cmd-group">
+          <code>git switch &lt;branch&gt;</code>
+          <div class="desc">Switch to another branch.</div>
+        </div>
+        <div class="cmd-group">
+          <code>git switch -c &lt;branch&gt;</code>
+          <div class="desc">Create and switch to a new branch in one step.</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
